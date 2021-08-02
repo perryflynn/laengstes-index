@@ -2,6 +2,8 @@
 
 Eine Liste von interessanten Themen aus dem [Längsten Thema](https://forum.netcup.de/sonstiges/smalltalk/1051-das-l%C3%A4ngste-thema/).
 
+[https://laengstes-index.serverless.industries/](https://laengstes-index.serverless.industries/)
+
 ## Thema hinzufügen
 
 Via Pull Request die Datei [docs/index.json](docs/index.json) bearbeiten.
