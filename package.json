@@ -1,0 +1,17 @@
+{
+  "name": "laengstes-index",
+  "version": "1.0.0",
+  "description": "Index of interesting topics in \"Das längste Thema\" (https://forum.netcup.de/sonstiges/smalltalk/1051-das-l%C3%A4ngste-thema/)",
+  "main": "docs/index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "http-server ./docs"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/perryflynn/laengstes-index",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  }
+}

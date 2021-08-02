@@ -6,13 +6,82 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Längster Index</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .list {
+                margin: 40px 0px;
+                display: block;
+            }
+
+            .postid {
+                font-family: monospace;
+                font-size: 80%;
+            }
+
+            .tags {
+                color: #999999;
+                font-style: italic;
+                font-size: 80%;
+            }
+        </style>
     </head>
 
     <body>
 
-        <h1>Hello World!</h1>
+        <h1>Längstes Inhaltsverzeichnis</h1>
 
-        <p>moep</p>
+        <p>
+            Eine Liste von interessanten Themen aus dem <a href="https://forum.netcup.de/sonstiges/smalltalk/1051-das-l%C3%A4ngste-thema/" target="_blank">Längsten Thema</a>.
+        </p>
+
+        <noscript>
+            <p>Diese Website erfordert Java Script um korrekt zu funktionieren.</p>
+        </noscript>
+
+        <div class="list">
+            <ul></ul>
+        </div>
+
+        <hr>
+
+        <p>
+            <a href="https://github.com/perryflynn/laengstes-index" target="_blank">https://github.com/perryflynn/laengstes-index</a>
+        </p>
+
+        <script>
+            window.addEventListener('load', async () =>
+            {
+                // Elements
+                const list = document.querySelector('.list ul');
+                const tempList = list.cloneNode(true);
+
+                // Fetch data
+                const resp = await fetch('index.json?ts='+Date.now());
+                const json = await resp.json();
+
+                // Decorate data
+                const items = json.items.sort((a, b) => a.title.localeCompare(b.title));
+
+                // Write HTML
+                items.forEach(item =>
+                {
+                    const url = 'https://forum.netcup.de/sonstiges/smalltalk/p' + item.post_id + '-das-l%C3%A4ngste-thema/#post' + item.post_id;
+                    const tagList = item.tags && item.tags.length > 0 ? ' <span class="tags">(' + item.tags.join(', ') + ')</span>' : '';
+                    tempList.insertAdjacentHTML('beforeend', '<li><span class="postid">' + item.post_id + ':</span> <a href="' + url + '">' + item.title + '</a>' + tagList + '</li>');
+                })
+
+                // Update DOM
+                list.parentNode.replaceChild(tempList, list);
+            });
+        </script>
 
     </body>
 
