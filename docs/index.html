@@ -57,6 +57,13 @@
         </p>
 
         <script>
+            String.prototype.escapeHTML = function()
+            {
+                var p = document.createElement("p");
+                p.textContent = this;
+                return p.innerHTML;
+            }
+
             window.addEventListener('load', async () =>
             {
                 // Elements
@@ -74,8 +81,8 @@
                 items.forEach(item =>
                 {
                     const url = 'https://forum.netcup.de/sonstiges/smalltalk/p' + item.post_id + '-das-l%C3%A4ngste-thema/#post' + item.post_id;
-                    const tagList = item.tags && item.tags.length > 0 ? ' <span class="tags">(' + item.tags.join(', ') + ')</span>' : '';
-                    tempList.insertAdjacentHTML('beforeend', '<li><span class="postid">' + item.post_id + ':</span> <a href="' + url + '">' + item.title + '</a>' + tagList + '</li>');
+                    const tagList = item.tags && item.tags.length > 0 ? ' <span class="tags">(' + item.tags.map(t => t.escapeHTML()).join(', ') + ')</span>' : '';
+                    tempList.insertAdjacentHTML('beforeend', '<li><span class="postid">' + item.post_id + ':</span> <a href="' + url + '" target="_blank">' + item.title.escapeHTML() + '</a>' + tagList + '</li>');
                 })
 
                 // Update DOM
