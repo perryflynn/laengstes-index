@@ -1,6 +1,11 @@
 {
     "items": [
         {
+            "title": "VPS G11(s) vs. G10(s)/G9",
+            "post_id": 223259,
+            "tags": [ "netcup", "produkte" ]
+        },
+        {
             "title": "netcup Produktdaten in BIOS/DMI",
             "post_id": 179301,
             "tags": [ "netcup", "kvm", "bios", "dmi" ]
